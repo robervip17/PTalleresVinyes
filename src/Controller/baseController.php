@@ -14,7 +14,7 @@ class EjercicioController extends AbstractController
      * @Route("/inicio", name="inicio")
      */
     public function inicio(){
-        return $this->render('index.html.twig');
+        return $this->render('inicio.html.twig');
     }
 
     /**
