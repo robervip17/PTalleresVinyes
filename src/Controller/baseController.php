@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
-class EjercicioController extends AbstractController
+class baseController extends AbstractController
 {
     /**
      * @Route("/inicio", name="inicio")
