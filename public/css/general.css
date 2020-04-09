@@ -1,0 +1,16 @@
+#logoPrinc{
+    width: 150px;
+    height: 150px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+nav{
+    font-family: "Consolas", monospace;
+}
+
+footer{
+    font-family: "Consolas", monospace;
+    color: white;
+    margin-bottom: 0%;
+}
