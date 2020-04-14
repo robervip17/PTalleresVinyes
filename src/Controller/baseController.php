@@ -46,17 +46,17 @@ class baseController extends AbstractController
     }
 
     /**
-     * @Route("/nosotros")
+     * @Route("/registro")
      */
-    public function nosotros(){
-        return $this->render('nosotros.html.twig');
+    public function registro(){
+        return $this->render('registro.html.twig');
     }
 
     /**
-     * @Route("/contacto")
+     * @Route("/inicioSesion")
      */
-    public function contacto(){
-        return $this->render('contacto.html.twig');
+    public function inicioSesion(){
+        return $this->render('inicioSesion.html.twig');
     }
 
     /**
