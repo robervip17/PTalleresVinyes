@@ -25,54 +25,19 @@ class baseController extends AbstractController
     }
 
     /**
-     * @Route("/proyectos/{page2?0}", name="proyectos")
-     */
-    public function proyectos($page2){
-        if($page2 == "1")
-        return $this->render("proyectos.html.twig");
-
-        if($page2 == "2")
-        return $this->render("proyectos_page2.html.twig");
-
-        if($page2 != "1" && $page2 != "2")
-        return $this->render("proyectos.html.twig");
-    }
-
-    /**
-     * @Route("/proyectos_page2")
-     */
-    public function proyectos_page2(){
-        return $this->render('proyectos_page2.html.twig');
-    }
-
-    /**
      * @Route("/registro")
      */
     public function registro(){
         return $this->render('registro.html.twig');
     }
 
-    /**
-     * @Route("/inicioSesion")
-     */
-    public function inicioSesion(){
-        return $this->render('inicioSesion.html.twig');
-    }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/inicioSesion", name="inicioSesion")
      */
     public function login(SessionInterface $session){
        $login = $session->get('username');
-       if ($login != "") {
-           $mensaje = "Hola ".$login."estas conectado.";
-
-       } else {
-            $mensaje = "Introduce los credenciales.";
-
-       }
-       return $this->render('login.html.twig', [
-            'sesion' => $mensaje,
+       return $this->render('inicioSesion.html.twig', [
             'login' => $login
        ]);
     }
@@ -91,7 +56,7 @@ class baseController extends AbstractController
             $mensaje = "Introduce los credenciales.";
 
         }
-        return $this->render('login.html.twig', [
+        return $this->render('sesionIniciada.html.twig', [
             'sesion' => $mensaje,
             'login' => $login
         ]);
@@ -103,6 +68,6 @@ class baseController extends AbstractController
     public function logout(SessionInterface $session)
     {
         $session->invalidate();
-        return $this->redirectToRoute('inicio');
+        return $this->redirectToRoute('inicioSesion');
     }
 }
