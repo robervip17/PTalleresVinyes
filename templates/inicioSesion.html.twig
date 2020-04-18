@@ -1,5 +1,6 @@
 {% extends "main/layout.html.twig" %}
 {% block archivospropios %}
+{% block title %}Inicio Sesion{% endblock %}
 	<link rel="stylesheet" href="./css/estilosInicioSesion.css">
 	<script src="./js/scriptInicioSesion.js"></script>
 {% endblock %}
@@ -25,6 +26,7 @@
 						<div>
 							<input type="submit" value="Entrar" class="button">
 							<input type="reset" value="Reset" class="button">
+							<input type="reset" value="Logout" class="button" onclick="window.location='logout'">
 						</div>
 						<p style="color:white;" class="text-center">
 							Si no tiene cuenta

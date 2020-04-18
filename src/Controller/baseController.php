@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class baseController extends AbstractController
@@ -13,27 +14,32 @@ class baseController extends AbstractController
     /**
      * @Route("/inicio", name="inicio")
      */
-    public function inicio(){
-        return $this->render('inicio.html.twig');
+    public function inicio(SessionInterface $session, Request $request){
+        $login = $request->request->get('user');
+        return $this->render('inicio.html.twig', [
+            'login' => $login
+       ]);
     }
 
     /**
      * @Route("/servicios")
      */
-    public function servicios(){
-        return $this->render('servicios.html.twig');
+    public function servicios(SessionInterface $session, Request $request){
+        $login = $request->request->get('user');
+        return $this->render('servicios.html.twig', [
+            'login' => $login]);
     }
 
     /**
      * @Route("/registro")
      */
-    public function registro(){
+    public function registro(SessionInterface $session){
         return $this->render('registro.html.twig');
     }
 
 
     /**
-     * @Route("/inicioSesion", name="inicioSesion")
+     * @Route("/inicioSesion", name="login")
      */
     public function login(SessionInterface $session){
        $login = $session->get('username');
@@ -47,17 +53,19 @@ class baseController extends AbstractController
      */
     public function logging(Request $request, SessionInterface $session)
     {
-        $login = $request->request->get('user');
-        if ($login != "") {
-            $session->set('username', $login);
-            $mensaje = "Hola ".$login." estas conectado.";
-        
-        } else {
-            $mensaje = "Introduce los credenciales.";
+        $session = new Session();
+        $session->start();
+        $session->set('username', $request->request->get('user'));
+        return $this->redirectToRoute('cuenta');
+    }
 
-        }
+    /**
+     * @Route("/pagCuenta", name="cuenta")
+     */
+    public function cuenta(Request $request, SessionInterface $session)
+    {
+        $login = $request->request->get('user');
         return $this->render('sesionIniciada.html.twig', [
-            'sesion' => $mensaje,
             'login' => $login
         ]);
     }
@@ -67,7 +75,7 @@ class baseController extends AbstractController
      */
     public function logout(SessionInterface $session)
     {
-        $session->invalidate();
-        return $this->redirectToRoute('inicioSesion');
+        $session->remove('username');
+        return $this->redirectToRoute('login');
     }
 }
