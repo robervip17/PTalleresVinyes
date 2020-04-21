@@ -15,16 +15,18 @@
 							<label>Correo Electronico
 								<span class="required">*</span>
 							</label>
-							<input name="user" style="width:300px" type="email" class="form-control" id="user" aria-describedby="emailHelp" placeholder="Enter email" value="{{ app.session.get('username') }}"/>
+							<input name="user" style="width:300px" type="email" class="form-control" id="user" aria-describedby="emailHelp" placeholder="Enter email" value="{{ app.session.get('username') }}" required/>
+							<p id="errorEmail"></p>
 						</div>
 						<div class="form-group">
 							<label>Contraseña
 								<span class="required">*</span>
 							</label>
-							<input name="password" style="width:300px" type="password" class="form-control" id="password" placeholder="Password" value=""/>
+							<input name="password" style="width:300px" type="password" class="form-control" id="password" placeholder="Password" value="" required/>
+							<p id="errorContrasenya"></p>
 						</div>
 						<div>
-							<input type="submit" value="Entrar" class="button">
+							<input type="submit" value="Entrar" class="button" onclick="comprobar()">
 							<input type="reset" value="Reset" class="button">
 							<input type="reset" value="Logout" class="button" onclick="window.location='logout'">
 						</div>
